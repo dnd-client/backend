@@ -1,17 +1,21 @@
 import { Controller, Get, Param } from '@nestjs/common';
 import { AppService } from './app.service';
+import { ApiOperation, ApiProperty, ApiTags } from '@nestjs/swagger';
 
-@Controller()
+@ApiTags('app')
+@Controller('app')
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+  constructor(private readonly appService: AppService) {
+  }
 
-  @Get()
+  @ApiOperation({ summary: 'Login in app' })
+  @Get('hello')
   getHello(): string {
     return this.appService.getHello();
   }
 
-  @Get("/test/:name")
-  getTest(@Param("name") name: string): string {
-      return `name is ${name}`;
+  @Get('/test/:name')
+  getTest(@Param('name') name: string): string {
+    return this.appService.getTest(name);
   }
 }
