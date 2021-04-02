@@ -7,7 +7,7 @@ import { DatabaseService } from './database.service';
   imports: [
     ConfigModule,
     TypeOrmModule.forRootAsync({
-      useClass: DatabaseService
+      useClass: DatabaseService,
     })
   ]
 })
