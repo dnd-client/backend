@@ -17,9 +17,8 @@ export class DatabaseService implements TypeOrmOptionsFactory {
       username: this.configService.get('DATABASE_USER') || 'user',
       password: this.configService.get('DATABASE_PASSWORD') || 'password',
       database: this.configService.get('DATABASE') || 'database',
-      entities: [`${resolve(__dirname, '..')}/**/*.entity{.ts,.js}`],
+      entities: [`${resolve(__dirname, '..')}/entities/*.entity{.ts,.js}`],
       migrations: [`${resolve(__dirname)}/migrations/{*.ts,*.js}`],
-      subscribers: [`${resolve(__dirname, '..')}/**/*.subscriber{.ts,.js}`],
       migrationsRun: true,
       logging: this.configService.get('NODE_ENV') === 'testing' ? false : 'all',
       cli: {migrationsDir: './migrations'},
@@ -29,3 +28,6 @@ export class DatabaseService implements TypeOrmOptionsFactory {
     }
   }
 }
+
+const configService = new ConfigService()
+export const databaseService = new DatabaseService(configService);

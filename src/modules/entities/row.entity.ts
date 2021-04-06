@@ -19,9 +19,9 @@ export class RowEntity<T = RowEntity<Record<string, unknown>>> extends Construct
 
   @CreateDateColumn({type: 'timestamp with time zone'})
   @Type(() => Date)
-  readonly createdAt?: Date;
+  createdAt?: Date;
 
   @UpdateDateColumn({type: 'timestamp with time zone'})
   @Type(() => Date)
-  readonly updatedAt?: Date;
+  updatedAt?: Date;
 }
