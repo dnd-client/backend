@@ -1,8 +1,9 @@
-import { Column, Entity, ManyToOne } from 'typeorm';
+import { validateOrReject } from 'class-validator';
+import { BeforeInsert, BeforeUpdate, Column, Entity, ManyToOne } from 'typeorm';
 import { RoleEntity } from './role.entity';
 import { RowEntity } from './row.entity';
 
-@Entity('user')
+@Entity('users')
 export class UserEntity extends RowEntity<UserEntity> {
   @Column({type: 'varchar', nullable: false, length: 255, unique: true})
   login: string;
@@ -21,4 +22,10 @@ export class UserEntity extends RowEntity<UserEntity> {
 
   @ManyToOne(() => RoleEntity)
   role: RoleEntity;
+
+  @BeforeInsert()
+  @BeforeUpdate()
+  async validate() {
+    await validateOrReject(this);
+  }
 }

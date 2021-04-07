@@ -6,7 +6,11 @@
   "password": "qwerty",
   "database": "dnd",
   "entities": [
-    "src/modules/entities/*.entity{.ts,.js}"
+    "dist/modules/entities/*.entity{.ts,.js, .d.ts}"
+  ],
+  "migrationsTableName": "migrations",
+  "migrations": [
+    "dist/modules/database/migrations/*{.ts,.js}"
   ],
   "cli": {
     "migrationDir": "src/migrations"

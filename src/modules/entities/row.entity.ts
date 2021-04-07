@@ -1,5 +1,5 @@
 import {Type} from 'class-transformer';
-import {CreateDateColumn, PrimaryGeneratedColumn, UpdateDateColumn} from 'typeorm';
+import {CreateDateColumn, PrimaryGeneratedColumn, UpdateDateColumn, Column} from 'typeorm';
 
 type NonFunctionPropertyNames<T> = {
   [K in keyof T]: T[K] extends Function ? never : K;
@@ -17,11 +17,9 @@ export class RowEntity<T = RowEntity<Record<string, unknown>>> extends Construct
   @PrimaryGeneratedColumn()
   readonly id?: number;
 
-  @CreateDateColumn({type: 'timestamp with time zone'})
-  @Type(() => Date)
-  createdAt?: Date;
+  @CreateDateColumn({ type: 'timestamptz', default: () => 'CURRENT_TIMESTAMP' })
+  created_at?: Date;
 
-  @UpdateDateColumn({type: 'timestamp with time zone'})
-  @Type(() => Date)
-  updatedAt?: Date;
+  @CreateDateColumn({ type: 'timestamptz', default: () => 'CURRENT_TIMESTAMP' })
+  updated_at?: Date;
 }

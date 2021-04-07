@@ -11,6 +11,9 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
     logger: new Logger()
   });
+  app.enableCors({
+    origin: ['http://localhost:3000']
+  })
   const docOptions = new DocumentBuilder()
     .setTitle('API документация')
     .setVersion('1.0')
