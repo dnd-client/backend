@@ -1,5 +1,4 @@
-import {Type} from 'class-transformer';
-import {CreateDateColumn, PrimaryGeneratedColumn, UpdateDateColumn, Column} from 'typeorm';
+import {CreateDateColumn, PrimaryGeneratedColumn} from 'typeorm';
 
 type NonFunctionPropertyNames<T> = {
   [K in keyof T]: T[K] extends Function ? never : K;

@@ -6,7 +6,7 @@ import * as dotenv from 'dotenv';
 
 async function bootstrap() {
   dotenv.config({path: '.env'});
-  const appPort = process.env.BACKEND_PORT || 3000;
+  const appPort = process.env.BACKEND_PORT || 3001;
 
   const app = await NestFactory.create(AppModule, {
     logger: new Logger()

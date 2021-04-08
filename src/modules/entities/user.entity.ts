@@ -15,7 +15,7 @@ export class UserEntity extends RowEntity<UserEntity> {
   password: string;
 
   @Column({type: 'varchar', nullable: true, length: 255})
-  avatar: string;
+  avatar: string | null;
 
   @Column({type: 'varchar', nullable: false, length: 255, unique: true})
   tokenCode: string;
